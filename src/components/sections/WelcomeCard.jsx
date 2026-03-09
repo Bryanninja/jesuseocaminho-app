@@ -1,6 +1,6 @@
-import WelcomeIcon from '../assets/SVG/WelcomeIcon.svg';
-import Card from './Card';
-import Dashboard from './Dashboard';
+import WelcomeIcon from '../../assets/SVG/WelcomeIcon.svg';
+import Card from '../Card';
+import Dashboard from '../Dashboard';
 
 const WelcomeCard = () => {
   return (
