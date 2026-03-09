@@ -1,12 +1,14 @@
-import { Clock1 } from 'lucide-react';
+import { Route, Routes } from 'react-router-dom';
 
 import Home from './pages/Home';
+import Plan from './pages/Plan';
 
 function App() {
   return (
-    <>
-      <Home />
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/plan" element={<Plan />} />
+    </Routes>
   );
 }
 
