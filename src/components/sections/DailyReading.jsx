@@ -4,7 +4,7 @@ import Reading from '../Reading';
 
 const DailyReading = () => {
   return (
-    <section className="container mx-auto flex w-full max-w-screen-xl flex-col gap-8 px-6 py-12 md:px-8">
+    <section className="container mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-6 py-12 md:px-8">
       {/* Title */}
       <div className="text-center text-white">
         <h1 className="font-raleway text-3xl font-bold">
@@ -17,7 +17,7 @@ const DailyReading = () => {
       <Reading />
 
       {/* Button */}
-      <Button color="outline" size="lg" className="self-center">
+      <Button to="/plan" color="outline" size="lg" className="self-center">
         Ver Leitura completa
       </Button>
     </section>

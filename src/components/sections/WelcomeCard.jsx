@@ -4,7 +4,7 @@ import Dashboard from '../Dashboard';
 
 const WelcomeCard = () => {
   return (
-    <section className="mx-auto -mt-36 flex w-full max-w-7xl flex-col gap-6 px-6 md:px-8 lg:flex-row">
+    <section className="mx-auto -mt-36 flex w-full max-w-[1440px] flex-col gap-6 px-6 md:px-8 lg:flex-row">
       {/* Card 1: Boas-vindas */}
       <Card className="gap-6 md:gap-10">
         <img src={WelcomeIcon} alt="" className="w-32 md:w-44" />
