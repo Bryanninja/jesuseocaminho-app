@@ -13,6 +13,7 @@ export default {
           'blue-green': '#68BAA5',
           'blue-light-green': '#68B4BA',
           'black-text': '#3F3F3F',
+          'surface-black': '#333333',
         },
       },
       backgroundImage: {
