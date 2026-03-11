@@ -1,23 +1,20 @@
+import React, { useMemo } from 'react';
+
 import { ChevronDown } from 'lucide-react';
 
 import { JsonReading } from '../reading_plan';
 import Reading from './Reading';
 
-const MonthToggle = ({ month, isOpen, onClick }) => {
-  const readingsDoMes = JsonReading.filter((item) => {
+const MonthToggle = React.memo(({ month, isOpen, onClick }) => {
+  const readingsDoMes = useMemo(() => {
     const mesAbreviado = month.substring(0, 3);
-    const id = parseInt(item.id);
-
-    if (month === 'Março/26') {
-      return item.data.includes('Mar') && id < 50;
-    }
-
-    if (month === 'Março/27') {
-      return item.data.includes('Mar') && id > 300;
-    }
-
-    return item.data.includes(mesAbreviado);
-  });
+    return JsonReading.filter((item) => {
+      const id = parseInt(item.id);
+      if (month.includes('26')) return item.data.includes('Mar') && id < 50;
+      if (month.includes('27')) return item.data.includes('Mar') && id > 350;
+      return item.data.includes(mesAbreviado);
+    });
+  }, [month]);
 
   return (
     <div className="rounded-3xl border border-white/5 bg-plan-surface-black px-6 py-8 shadow-lg transition-all duration-300 md:p-8">
@@ -35,15 +32,12 @@ const MonthToggle = ({ month, isOpen, onClick }) => {
       </div>
 
       <div
-        className={`grid transition-all duration-300 ease-in-out ${
-          isOpen
-            ? 'mt-6 grid-rows-[1fr] opacity-100'
-            : 'grid-rows-[0fr] opacity-0'
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+          isOpen ? ' grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
           <div className="space-y-4 pt-4">
-            {/* 3. Agora usamos a lista filtrada dinamicamente */}
             {readingsDoMes.map((item) => (
               <Reading
                 key={item.id}
@@ -58,6 +52,6 @@ const MonthToggle = ({ month, isOpen, onClick }) => {
       </div>
     </div>
   );
-};
+});
 
 export default MonthToggle;
