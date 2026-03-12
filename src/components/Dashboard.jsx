@@ -1,8 +1,15 @@
+import { UseReading } from '../context/ReadingContext';
+
 const Dashboard = () => {
+  const { completedDays } = UseReading();
+
+  const totalRead = completedDays.length;
+  const percentage = ((totalRead / 365) * 100).toFixed(0);
+
   return (
     <div className="relative flex items-center justify-center">
       {/* O Círculo de Progresso */}
-      <svg className="h-48 w-48 rotate-180 transform">
+      <svg className="h-48 w-48 -rotate-90 transform">
         {/* Círculo de Fundo (Trilha) */}
         <circle
           cx="96"
@@ -21,7 +28,7 @@ const Dashboard = () => {
           stroke="url(#green-gradient)"
           strokeWidth="32"
           strokeDasharray={502} // Circunferência total (2 * PI * r)
-          strokeDashoffset={502 - (502 * 24) / 100} // variável de progresso
+          strokeDashoffset={502 - (502 * percentage) / 100} // variável de progresso
           fill="transparent"
         />
         {/* Definição do Gradiente do Círculo */}
@@ -35,7 +42,7 @@ const Dashboard = () => {
 
       {/* Texto Centralizado */}
       <div className="absolute flex flex-col items-center justify-center">
-        <span className="text-2xl font-bold text-white">24%</span>
+        <span className="text-2xl font-bold text-white">{percentage}%</span>
       </div>
     </div>
   );
