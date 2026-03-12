@@ -6,6 +6,26 @@ import { JsonReading } from '../reading_plan';
 import Reading from './Reading';
 
 const MonthToggle = React.memo(({ month, isOpen, onClick }) => {
+  const todayDate = useMemo(() => {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const monthsShort = [
+      'Jan',
+      'Fev',
+      'Mar',
+      'Abr',
+      'Mai',
+      'Jun',
+      'Jul',
+      'Ago',
+      'Set',
+      'Out',
+      'Nov',
+      'Dez',
+    ];
+    return `${day}/${monthsShort[now.getMonth()]}`;
+  }, []);
+
   const readingsDoMes = useMemo(() => {
     const mesAbreviado = month.substring(0, 3);
     return JsonReading.filter((item) => {
@@ -43,6 +63,7 @@ const MonthToggle = React.memo(({ month, isOpen, onClick }) => {
                 key={item.id}
                 data={item.data}
                 chapters={item.chapters}
+                isToday={item.data === todayDate}
                 //  ID para salvar o progresso depois
                 id={item.id}
               />

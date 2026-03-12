@@ -3,24 +3,33 @@ import { UseReading } from '../context/ReadingContext';
 import Button from './Button';
 import Checkbox from './Checkbox';
 
-const Reading = ({ id, data, chapters }) => {
+const Reading = ({ isToday, id, data, chapters }) => {
   const { completedDays, toggleDay } = UseReading();
 
   const isChecked = completedDays.includes(id);
 
   return (
-    <div className="flex items-center justify-between rounded-3xl bg-plan-black-text p-4">
-      <div className="flex items-center gap-4 md:gap-6">
-        <Checkbox isChecked={isChecked} onClick={() => toggleDay(id)} />
-        <div className="flex flex-col">
-          <h3 className="text-2xl font-bold text-white">{data}</h3>
-          <p className="text-lg text-white">{chapters}</p>
+    <div className="flex flex-col gap-4">
+      {isToday && (
+        <h3 className="font-raleway text-xl font-bold text-white">
+          Leitura de Hoje
+        </h3>
+      )}
+      <div
+        className={`flex items-center justify-between rounded-3xl border-2 bg-plan-black-text p-4 ${isToday ? 'border-plan-green-opaque' : 'border-transparent'}`}
+      >
+        <div className="flex items-center gap-4 md:gap-6">
+          <Checkbox isChecked={isChecked} onClick={() => toggleDay(id)} />
+          <div className="flex flex-col">
+            <h3 className="text-2xl font-bold text-white">{data}</h3>
+            <p className="text-lg text-white">{chapters}</p>
+          </div>
         </div>
-      </div>
 
-      <Button size="md" color="ghost">
-        <img src={Bible} alt="" />
-      </Button>
+        <Button size="md" color="ghost">
+          <img src={Bible} alt="" />
+        </Button>
+      </div>
     </div>
   );
 };
