@@ -1,16 +1,15 @@
 const Checkbox = ({ isChecked, onClick }) => {
   return (
     <div className="relative flex items-center justify-center">
-      {/* O Efeito de Pulse Corrigido (Some e não volta mais) */}
+      {/* O Efeito de Pulse */}
       {isChecked && (
         <div className="absolute h-full w-full animate-ping rounded-full bg-plan-green-brand opacity-20 [animation-fill-mode:forwards] [animation-iteration-count:1]"></div>
       )}
 
-      {/* Seu Botão Original */}
+      {/* Botão Original */}
       <button
         onClick={onClick}
         type="button"
-        // Sem o focus ring, visual bem mais limpo como você queria!
         className="group relative z-10 flex items-center justify-center rounded-full outline-none"
       >
         <svg
