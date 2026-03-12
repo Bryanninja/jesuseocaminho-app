@@ -4,7 +4,37 @@ import MonthToggle from '../components/MonthToggle';
 import Header from '../components/sections/Header';
 
 const Plan = () => {
-  const [activeMonth, setActiveMonth] = useState('Março/26');
+  const getInitialMonth = () => {
+    const now = new Date();
+    const monthIndex = now.getMonth();
+    const yearShort = now.getFullYear().toString().slice(-2);
+
+    // Mapeamento para garantir que o estado bata exatamente com o array 'months'
+    const monthNamesPT = [
+      'Janeiro',
+      'Fevereiro',
+      'Março',
+      'Abril',
+      'Maio',
+      'Junho',
+      'Julho',
+      'Agosto',
+      'Setembro',
+      'Outubro',
+      'Novembro',
+      'Dezembro',
+    ];
+
+    let currentMonthLabel = monthNamesPT[monthIndex];
+
+    if (currentMonthLabel === 'Março') {
+      return `Março/${yearShort}`;
+    }
+
+    return currentMonthLabel;
+  };
+
+  const [activeMonth, setActiveMonth] = useState(getInitialMonth());
 
   const months = [
     'Março/26',
