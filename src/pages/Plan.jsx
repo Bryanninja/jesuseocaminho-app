@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import ArrowBack from '../components/ArrowBack';
 import MonthToggle from '../components/MonthToggle';
 import Header from '../components/sections/Header';
 
@@ -53,7 +54,8 @@ const Plan = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-plan-surface-black">
+    <main className="relative min-h-screen bg-plan-surface-black">
+      <ArrowBack to="/" />
       <Header />
       <div className="mx-auto -mt-12 grid max-w-[1440px] grid-cols-1 gap-4 px-3 pb-20 md:px-6">
         {months.map((month) => (
