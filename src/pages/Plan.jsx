@@ -1,10 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import ArrowBack from '../components/ArrowBack';
 import MonthToggle from '../components/MonthToggle';
 import Header from '../components/sections/Header';
 
 const Plan = () => {
+  useEffect(() => {
+    // Damos um pequeno delay (350ms) para o React renderizar os meses
+    const timer = setTimeout(() => {
+      const element = document.getElementById('today-reading');
+
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      }
+    }, 350);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const getInitialMonth = () => {
     const now = new Date();
     const monthIndex = now.getMonth();

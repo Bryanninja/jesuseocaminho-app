@@ -9,7 +9,10 @@ const Reading = ({ isToday, id, data, chapters }) => {
   const isChecked = completedDays.includes(id);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div
+      id={isToday ? 'today-reading' : undefined}
+      className="flex flex-col gap-4"
+    >
       {isToday && (
         <h3 className="font-raleway text-xl font-bold text-white">
           Leitura de Hoje
