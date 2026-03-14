@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 
-import { UseReading } from '../../context/ReadingContext';
 import { JsonReading } from '../../reading_plan';
 import Button from '../Button';
 import Reading from '../Reading';
@@ -30,13 +29,15 @@ const DailyReading = () => {
   }, []);
 
   return (
-    <section className="container mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-6 py-12 md:px-8">
+    <section className="container mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-6 pb-12 pt-12 md:px-8 md:pt-24">
       {/* Title */}
-      <div className="text-center text-white">
-        <h1 className="font-raleway text-3xl font-bold">
+      <div className="text-center">
+        <h1 className="pb-1 font-raleway text-4xl font-bold text-white">
           Acompanhar a <br className="md:hidden" /> Leitura de hoje
         </h1>
-        <p className="text-base">Marque o círculo para concluir.</p>
+        <p className="text-base text-white/80 md:text-xl">
+          Marque o círculo para concluir.
+        </p>
       </div>
 
       {/* Reading */}
