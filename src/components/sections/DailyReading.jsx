@@ -1,8 +1,34 @@
+import { useMemo } from 'react';
+
+import { UseReading } from '../../context/ReadingContext';
+import { JsonReading } from '../../reading_plan';
 import Button from '../Button';
-import Checkbox from '../Checkbox';
 import Reading from '../Reading';
 
 const DailyReading = () => {
+  const todayItem = useMemo(() => {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const monthsShort = [
+      'Jan',
+      'Fev',
+      'Mar',
+      'Abr',
+      'Mai',
+      'Jun',
+      'Jul',
+      'Ago',
+      'Set',
+      'Out',
+      'Nov',
+      'Dez',
+    ];
+
+    const todayStr = `${day}/${monthsShort[now.getMonth()]}`;
+
+    return JsonReading.find((item) => item.data === todayStr);
+  }, []);
+
   return (
     <section className="container mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-6 py-12 md:px-8">
       {/* Title */}
@@ -14,7 +40,18 @@ const DailyReading = () => {
       </div>
 
       {/* Reading */}
-      <Reading />
+      {todayItem ? (
+        <Reading
+          id={todayItem.id}
+          data={todayItem.data}
+          chapters={todayItem.chapters}
+          isToday={false}
+        />
+      ) : (
+        <p className="text-center text-white/50">
+          Erro ao Buscar leitura de hoje. Reinicie e tente novamente.
+        </p>
+      )}
 
       {/* Button */}
       <Button to="/plan" color="outline" size="lg" className="self-center">
