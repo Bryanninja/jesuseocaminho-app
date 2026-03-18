@@ -1,10 +1,6 @@
 import { UseReading } from '../context/ReadingContext';
 
-const Dashboard = () => {
-  const { completedDays } = UseReading();
-  const totalRead = completedDays.length;
-  const percentage = ((totalRead / 365) * 100).toFixed(0);
-
+const Dashboard = ({ percentage }) => {
   // Configurações de tamanho:
   // No mobile: w-32 (128px), cx/cy em 64, raio 54
   // No XL: w-48 (192px), cx/cy em 96, raio 80

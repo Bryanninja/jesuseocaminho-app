@@ -1,8 +1,25 @@
 import WelcomeIcon from '../../assets/SVG/WelcomeIcon.svg';
+import { UseReading } from '../../context/ReadingContext';
 import Card from '../Card';
 import Dashboard from '../Dashboard';
 
 const WelcomeCard = ({ name }) => {
+  const { completedDays } = UseReading();
+  const totalRead = completedDays.length;
+  const percentage =
+    totalRead === 0
+      ? 0
+      : totalRead === 365
+        ? 100
+        : Math.min(99, Math.ceil((totalRead / 365) * 100));
+
+  // função para definir a mensagem dinamicamente
+  const getProgressMessage = () => {
+    if (totalRead === 0) return 'Vamos começar a sua jornada hoje?';
+    if (totalRead === 365) return 'Glória a Deus! Você concluiu a Bíblia!';
+    return 'Você está indo muito bem!';
+  };
+
   return (
     <section className="mx-auto -mt-36 flex w-full max-w-[1440px] flex-col gap-6 px-6 md:px-8 lg:flex-row">
       {/* Card 1: Boas-vindas */}
@@ -25,14 +42,12 @@ const WelcomeCard = ({ name }) => {
             Veja o seu <br /> progresso de
             <br className="hidden md:block" /> Leitura
           </h2>
-          <p className="mt-2 text-base text-white/80">
-            Você está indo muito bem!
-          </p>
+          <p className="mt-2 text-base text-white/80">{getProgressMessage()}</p>
         </div>
 
         {/* Componente do Círculo */}
         <div className="shrink-0">
-          <Dashboard />
+          <Dashboard percentage={percentage} />
         </div>
       </Card>
     </section>
