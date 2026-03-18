@@ -50,6 +50,11 @@ const Reading = ({ isToday, id, data, chapters }) => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         fullReadingString={chapters} // Passa "Gn 13-15, Mt 5"
+        isCompleted={isChecked}
+        onComplete={() => {
+          toggleDay(id);
+          setIsModalOpen(false);
+        }}
       />
     </div>
   );

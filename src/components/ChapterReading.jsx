@@ -1,16 +1,22 @@
 import { useCallback, useEffect, useState } from 'react';
 
-// 1. Importe o useCallback
 import { Loader2, X } from 'lucide-react';
 
 import api from '../services/api';
 import { getReadingDetails } from '../utils/bible.parser';
+import Button from './Button';
 
-const ChapterReading = ({ isOpen, onClose, fullReadingString }) => {
+const ChapterReading = ({
+  isOpen,
+  onClose,
+  fullReadingString,
+  isCompleted,
+  onComplete,
+}) => {
   const [readingContent, setReadingContent] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // 2. Envolva a função no useCallback
+  // função useCallback
   const loadBibleText = useCallback(async () => {
     setLoading(true);
     try {
@@ -101,6 +107,23 @@ const ChapterReading = ({ isOpen, onClose, fullReadingString }) => {
                 </div>
               </div>
             ))}
+
+            {/* Marcar como concluido! */}
+            <div className="mt-12 flex flex-col items-center justify-center gap-6 border-t border-plan-green-brand/20 pt-10">
+              <h1 className="text-center font-raleway text-3xl font-bold text-plan-green-brand">
+                {isCompleted
+                  ? 'Leitura de hoje já concluída! 🎉'
+                  : 'Aqui finalizamos a Leitura de Hoje! Parabéns, continue firme.'}
+              </h1>
+
+              {/* 2. O botão reage ao estado isCompleted e aciona o onComplete */}
+              <Button
+                color={isCompleted ? 'ghost' : 'outline'}
+                onClick={onComplete}
+              >
+                {isCompleted ? 'Desmarcar leitura' : 'Marcar como concluído!'}
+              </Button>
+            </div>
           </div>
         )}
       </div>
