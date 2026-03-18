@@ -15,7 +15,7 @@ const WelcomeCard = ({ name }) => {
 
   // função para definir a mensagem dinamicamente
   const getProgressMessage = () => {
-    if (totalRead === 0) return 'Vamos começar a sua jornada hoje?';
+    if (totalRead === 0) return 'Vamos começar a sua jornada?';
     if (totalRead === 365) return 'Glória a Deus! Você concluiu a Bíblia!';
     return 'Você está indo muito bem!';
   };
@@ -23,9 +23,9 @@ const WelcomeCard = ({ name }) => {
   return (
     <section className="mx-auto -mt-36 flex w-full max-w-[1440px] flex-col gap-6 px-6 md:px-8 lg:flex-row">
       {/* Card 1: Boas-vindas */}
-      <Card className="gap-6 md:gap-10">
-        <img src={WelcomeIcon} alt="" className="w-32 xl:w-44" />
-        <div className="flex flex-col items-center text-center md:items-start md:text-left">
+      <Card className="w-full flex-1 gap-6 md:gap-10">
+        <img src={WelcomeIcon} alt="" className="w-32 shrink-0 xl:w-44" />
+        <div className="flex w-full flex-1 flex-col items-center text-center md:items-start md:text-left">
           <h2 className="font-raleway text-3xl font-bold text-white xl:text-4xl">
             Olá, {name}
           </h2>
@@ -36,8 +36,8 @@ const WelcomeCard = ({ name }) => {
       </Card>
 
       {/* Card 2: Dashboard */}
-      <Card className="gap-10 xl:gap-32">
-        <div className="flex h-full flex-col items-center justify-center py-2 text-center md:items-start md:text-left">
+      <Card className="w-full flex-1 gap-10 xl:gap-32">
+        <div className="flex h-full w-full flex-1 flex-col items-center justify-center py-2 text-center md:items-start md:text-left">
           <h2 className="font-raleway text-3xl font-bold leading-tight text-white xl:text-3xl">
             Veja o seu <br /> progresso de
             <br className="hidden md:block" /> Leitura
