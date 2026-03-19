@@ -7,9 +7,20 @@ const ModalName = ({ isOpen, onEnter }) => {
   const [userName, setUserName] = useState('');
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+    if (isOpen) {
+      // Trava o <body> e o <html> simultaneamente
+      document.body.classList.add('overflow-hidden');
+      document.documentElement.classList.add('overflow-hidden');
+    } else {
+      // Destrava quando o modal fechar
+      document.body.classList.remove('overflow-hidden');
+      document.documentElement.classList.remove('overflow-hidden');
+    }
+
+    // A função de "Cleanup"
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.classList.remove('overflow-hidden');
+      document.documentElement.classList.remove('overflow-hidden');
     };
   }, [isOpen]);
 
@@ -27,12 +38,13 @@ const ModalName = ({ isOpen, onEnter }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-[99] flex h-dvh w-full items-center justify-center px-6 backdrop-blur-xl">
-      <div className="container flex max-w-md flex-col items-center gap-8 rounded-3xl border border-plan-green-opaque bg-plan-light-black px-10 py-12">
+    <div className="fixed inset-0 z-[99] flex h-dvh w-full items-center justify-center overflow-y-auto bg-black/60 px-6 backdrop-blur-xl">
+      {/*  'my-auto' para garantir que ele fique no centro, mas possa rolar se o teclado abrir */}
+      <div className="container my-auto flex max-w-md flex-col items-center gap-8 rounded-3xl border border-plan-green-opaque bg-plan-light-black px-10 py-12 shadow-2xl">
         <div className="flex flex-col items-center gap-6">
-          <img src={WelcomeIcon} alt="" className="w-40" />
-          <h1 className="font-raleway text-4xl font-bold text-white">
-            Olá, a paz <br className="md:hidden" /> do senhor!
+          <img src={WelcomeIcon} alt="Ícone de Boas Vindas" className="w-40" />
+          <h1 className="text-center font-raleway text-4xl font-bold text-white">
+            Olá, a paz <br className="md:hidden" /> do Senhor!
           </h1>
         </div>
 
