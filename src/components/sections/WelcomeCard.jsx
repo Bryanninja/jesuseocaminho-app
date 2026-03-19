@@ -25,7 +25,8 @@ const WelcomeCard = ({ name }) => {
       {/* Card 1: Boas-vindas */}
       <Card className="w-full flex-1 gap-6 md:gap-10">
         <img src={WelcomeIcon} alt="" className="w-32 shrink-0 xl:w-44" />
-        <div className="flex w-full flex-1 flex-col items-center text-center md:items-start md:text-left">
+
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <h2 className="font-raleway text-3xl font-bold text-white xl:text-4xl">
             Olá, {name}
           </h2>
