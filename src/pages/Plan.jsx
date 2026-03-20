@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import ArrowBack from '../components/ArrowBack';
-import MonthToggle from '../components/MonthToggle';
 import Header from '../components/sections/Header';
+import MonthToggle from '../components/sections/MonthToggle';
 
 const Plan = () => {
   useEffect(() => {

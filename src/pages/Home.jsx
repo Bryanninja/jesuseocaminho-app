@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
+import ModalName from '../components/ModalName';
 import DailyReading from '../components/sections/DailyReading';
 import Header from '../components/sections/Header';
-import ModalName from '../components/sections/ModalName';
 import WelcomeCard from '../components/sections/WelcomeCard';
 
 const Home = () => {
