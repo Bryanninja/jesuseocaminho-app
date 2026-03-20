@@ -11,15 +11,23 @@ const ModalName = ({ isOpen, onEnter }) => {
 
   useEffect(() => {
     if (isOpen) {
+      // 1. Trava o scroll no CSS (Classes do Tailwind)
       document.body.classList.add('overflow-hidden');
       document.documentElement.classList.add('overflow-hidden');
+      // 2. Trava o arraste no Mobile (Estilo direto para o Safari)
+      document.body.style.touchAction = 'none';
     } else {
+      // Libera tudo
       document.body.classList.remove('overflow-hidden');
       document.documentElement.classList.remove('overflow-hidden');
+      document.body.style.touchAction = '';
     }
+
+    // Limpeza (Clean up) quando o componente for desmontado
     return () => {
       document.body.classList.remove('overflow-hidden');
       document.documentElement.classList.remove('overflow-hidden');
+      document.body.style.touchAction = '';
     };
   }, [isOpen]);
 
@@ -43,7 +51,7 @@ const ModalName = ({ isOpen, onEnter }) => {
           className="fixed inset-0 z-[99] flex items-center justify-center bg-black/60 px-6 backdrop-blur-xl"
         >
           {/* 2. O COMPONENTE DE ANIMAÇÃO ENVOLVENDO O CONTEÚDO */}
-          <ModalTransition className="container my-auto flex max-w-md flex-col items-center gap-8 rounded-3xl border border-plan-green-opaque bg-plan-light-black px-10 py-12 shadow-2xl">
+          <ModalTransition className="container my-auto flex max-w-md flex-col items-center gap-8 overscroll-contain rounded-3xl border border-plan-green-opaque bg-plan-light-black px-10 py-12 shadow-2xl">
             <div className="flex flex-col items-center gap-6">
               <img
                 src={WelcomeIcon}
