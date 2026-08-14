@@ -13,6 +13,12 @@ const parseChapterRange = (rangeStr) => {
   return [Number(rangeStr)];
 };
 
+// Mapa de correções para a ABíblia Digital
+const ABBREV_MAP = {
+  'est': 'et',  // Ester
+  'jó': 'job',  // Jó
+};
+
 /**
  * Processa "Gn 13-15, Mt 5"
  * Devolve: [ { abbrev: "gn", chapters: [13,14,15] }, { abbrev: "mt", chapters: [5] } ]
@@ -27,13 +33,17 @@ export const getReadingDetails = (fullString) => {
     const lastSpaceIndex = reading.lastIndexOf(' ');
 
     // Pegamos a abreviação (ex: "Gn")
-    const rawAbbrev = reading.substring(0, lastSpaceIndex);
+    const rawAbbrev = reading.substring(0, lastSpaceIndex).toLowerCase();
+    
+    // Tratamos exceções como Jó e Ester que a API espera diferente
+    const finalAbbrev = ABBREV_MAP[rawAbbrev] || rawAbbrev;
+
     // Pegamos o intervalo (ex: "13-15")
     const rangeStr = reading.substring(lastSpaceIndex + 1);
 
     return {
       // transformamos em minúsculo para a API aceitar
-      abbrev: rawAbbrev.toLowerCase(),
+      abbrev: finalAbbrev,
       chapters: parseChapterRange(rangeStr),
       title: reading, // Para mostrar no título do modal
     };
