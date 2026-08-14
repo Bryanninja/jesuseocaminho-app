@@ -1,11 +1,10 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://www.abibliadigital.com.br/api',
+  baseURL: 'https://abibliadigital.api.br/api',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
   },
 });
 
